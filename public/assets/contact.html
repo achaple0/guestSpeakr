@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Speaker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="public/js/contact.js" defer></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Sidebar Navigation -->
+    <div class="flex h-screen">
+        <nav class="w-64 bg-white p-5 shadow-md">
+            <h1 class="text-2xl font-bold mb-5">Scheduler</h1>
+            <ul>
+                <li class="mb-2"><a href="dashboard.html" class="block p-2 rounded hover:bg-gray-200">Dashboard</a></li>
+                <li class="mb-2"><a href="calendar.html" class="block p-2 rounded hover:bg-gray-200">Calendar</a></li>
+                <li class="mb-2"><a href="contact.html" class="block p-2 rounded hover:bg-gray-300">Contact Speaker</a></li>
+                <li class="mb-2"><a href="settings.html" class="block p-2 rounded hover:bg-gray-200">Settings</a></li>
+                <li class="mb-2"><a href="index.html" class="block p-2 rounded hover:bg-gray-300">Login</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6">
+            <h2 class="text-xl font-semibold mb-4">Contact Speaker</h2>
+
+            <!-- Contact Form -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <label class="block mb-2">Select Speaker:</label>
+                <select id="speakerSelect" class="w-full p-2 border rounded mb-4">
+                    <option value="">Loading speakers...</option>
+                </select>
+
+                <label class="block mb-2">Contact Method:</label>
+                <div class="mb-4">
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="contactMethod" value="email" class="mr-2" checked> Email
+                    </label>
+                    <label class="inline-flex items-center ml-4">
+                        <input type="radio" name="contactMethod" value="sms" class="mr-2"> SMS
+                    </label>
+                </div>
+
+                <label class="block mb-2">Message:</label>
+                <textarea id="messageInput" class="w-full p-2 border rounded mb-4" placeholder="Enter your message..."></textarea>
+
+                <div class="flex justify-between">
+                    <button id="sendMessageBtn" class="bg-blue-500 text-white px-4 py-2 rounded">Send Message</button>
+                    <button id="openNotesBtn" class="bg-yellow-500 text-white px-4 py-2 rounded">View Notes</button>
+                </div>
+            </div>
+
+            <!-- Sticky Note Modal -->
+            <div id="notesModal" class="fixed inset-0 hidden bg-gray-900 bg-opacity-50 flex items-center justify-center">
+                <div class="bg-yellow-200 p-6 rounded-lg shadow-lg w-80">
+                    <h3 class="text-lg font-semibold mb-4 text-center">Prewritten Messages</h3>
+                    <ul id="notesList" class="space-y-2">
+                        <li class="bg-yellow-300 p-3 rounded cursor-pointer hover:bg-yellow-400" onclick="selectMessage(this)">"Hello, looking forward to your talk!"</li>
+                        <li class="bg-yellow-300 p-3 rounded cursor-pointer hover:bg-yellow-400" onclick="selectMessage(this)">"Reminder: Your talk is scheduled for this date."</li>
+                        <li class="bg-yellow-300 p-3 rounded cursor-pointer hover:bg-yellow-400" onclick="selectMessage(this)">"Let me know if you need any adjustments."</li>
+                    </ul>
+                    <button id="closeNotesBtn" class="mt-4 bg-red-500 text-white px-4 py-2 rounded w-full">Close</button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+</html>

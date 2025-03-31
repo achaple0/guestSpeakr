@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar - Scheduling Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+    <script src="/public/js/calendar.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var calendarEl = document.getElementById("calendar");
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: "dayGridMonth",
+          height: "auto",
+          aspectRatio: 1.5,
+          contentHeight: 600,
+        });
+        calendar.render();
+      });
+    </script>
+  </head>
+  <body class="bg-gray-100">
+    <!-- Sidebar -->
+    <div class="flex h-screen">
+      <nav class="w-64 bg-white p-5 shadow-md">
+        <h1 class="text-2xl font-bold mb-5">Scheduler</h1>
+        <ul>
+          <li class="mb-2">
+            <a href="dashboard.html" class="block p-2 rounded hover:bg-gray-200"
+              >Dashboard</a
+            >
+          </li>
+          <li class="mb-2">
+            <a href="calendar.html" class="block p-2 rounded hover:bg-gray-200"
+              >Calendar</a
+            >
+          </li>
+          <li class="mb-2">
+            <a href="contact.html" class="block p-2 rounded hover:bg-gray-300"
+              >Contact Speaker</a
+            >
+          </li>
+          <li class="mb-2">
+            <a href="settings.html" class="block p-2 rounded hover:bg-gray-200"
+              >Settings</a
+            >
+          </li>
+          <li class="mb-2">
+            <a href="index.html" class="block p-2 rounded hover:bg-gray-300"
+              >Login</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Calendar Section -->
+      <main class="flex-1 p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-semibold">Event Calendar</h2>
+          <button
+            id="addEventBtn"
+            class="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Add Event
+          </button>
+        </div>
+
+        <!-- Calendar Container -->
+        <div
+          id="calendar"
+          class="bg-white p-6 rounded-lg shadow-md max-h-[75vh] overflow-hidden"
+        ></div>
+      </main>
+    </div>
+
+    <!-- Modal for Adding Event -->
+    <!-- Modal Overlay -->
+    <div
+      id="modalOverlay"
+      class="fixed inset-0 hidden bg-gray-900 bg-opacity-50 z-40"
+    ></div>
+
+    <!-- Event Modal -->
+    <div
+      id="eventModal"
+      class="fixed inset-0 hidden flex items-center justify-center z-50"
+    >
+      <div class="bg-white p-6 rounded-lg shadow-lg w-96 relative">
+        <h3 class="text-lg font-semibold mb-4">Add New Event</h3>
+        <label class="block mb-2">Speaker Name:</label>
+        <input
+          type="text"
+          id="speakerInput"
+          class="w-full p-2 border rounded mb-4"
+        />
+        <label class="block mb-2">Talk Name:</label>
+        <input
+          type="text"
+          id="talkInput"
+          class="w-full p-2 border rounded mb-4"
+        />
+        <label class="block mb-2">Date & Time:</label>
+        <input
+          type="datetime-local"
+          id="dateTimeInput"
+          class="w-full p-2 border rounded mb-4"
+        />
+        <label class="block mb-2">Opening Song:</label>
+        <input
+          type="text"
+          id="songInput"
+          class="w-full p-2 border rounded mb-4"
+        />
+        <label class="block mb-2">Congregation Name:</label>
+        <input
+          type="text"
+          id="congregationInput"
+          class="w-full p-2 border rounded mb-4"
+        />
+        <div class="flex justify-end">
+          <button
+            id="submitEvent"
+            class="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Save
+          </button>
+          <button id="closeModal" class="ml-2 text-gray-600">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      document
+        .getElementById("addEventBtn")
+        .addEventListener("click", function () {
+          document.getElementById("eventModal").classList.remove("hidden");
+        });
+      document
+        .getElementById("closeModal")
+        .addEventListener("click", function () {
+          document.getElementById("eventModal").classList.add("hidden");
+        });
+      document
+        .getElementById("submitEvent")
+        .addEventListener("click", function () {
+          document.getElementById("closeModal").classList.add("hidden");
+        });
+
+      // Assume you get the date from the server as a string in UTC format
+      const eventDateUTC = "2025-03-30T22:00:00.000Z"; // Example: UTC time string from server
+
+      // Convert it to a local date object
+      const eventDateLocal = new Date(eventDateUTC);
+
+      // If you need the time in a specific format (like HH:mm for 24-hour time format)
+      const hours = eventDateLocal.getHours();
+      const minutes = eventDateLocal.getMinutes();
+      const formattedTime = `${hours}:${minutes < 10 ? "0" : ""}${minutes}`;
+
+      console.log("Local time:", formattedTime); // Use this formattedTime to display in the calendar
+    </script>
+  </body>
+</html>

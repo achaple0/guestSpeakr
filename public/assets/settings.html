@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Scheduling Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Sidebar -->
+    <div class="flex h-screen">
+        <nav class="w-64 bg-white p-5 shadow-md">
+            <h1 class="text-2xl font-bold mb-5">Scheduler</h1>
+            <ul>
+                <li class="mb-2"><a href="dashboard.html" class="block p-2 rounded hover:bg-gray-200">Dashboard</a></li>
+                <li class="mb-2"><a href="calendar.html" class="block p-2 rounded hover:bg-gray-200">Calendar</a></li>
+                <li class="mb-2"><a href="contact.html" class="block p-2 rounded hover:bg-gray-300">Contact Speaker</a></li>
+                <li class="mb-2"><a href="settings.html" class="block p-2 rounded hover:bg-gray-200">Settings</a></li>
+                <li class="mb-2"><a href="index.html" class="block p-2 rounded hover:bg-gray-300">Login</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6">
+            <h2 class="text-xl font-semibold mb-4">Settings</h2>
+
+            <!-- Tabs -->
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <div class="flex border-b">
+                    <button class="tab-link px-4 py-2 border-b-2 border-transparent focus:outline-none" data-tab="profile">Profile</button>
+                    <button class="tab-link px-4 py-2 border-b-2 border-transparent focus:outline-none" data-tab="password">Password</button>
+                    <button class="tab-link px-4 py-2 border-b-2 border-transparent focus:outline-none" data-tab="admin">Admin</button>
+                </div>
+
+                <!-- Profile Tab -->
+                <div id="profile" class="tab-content p-4">
+                    <h3 class="text-lg font-semibold mb-4">Profile Settings</h3>
+                    <label class="block mb-2">Congregation Name</label>
+                    <input type="text" class="w-full p-2 border rounded mb-4" placeholder="Enter congregation name">
+                    
+                    <label class="block mb-2">State</label>
+                    <input type="text" class="w-full p-2 border rounded mb-4" placeholder="Enter state">
+
+                    <label class="block mb-2">Circuit</label>
+                    <input type="text" class="w-full p-2 border rounded mb-4" placeholder="Enter state">
+
+                    <label class="block mb-2">Preferred Language</label>
+                    <select class="w-full p-2 border rounded mb-4">
+                        <option>English</option>
+                        <option>Spanish</option>
+                        <option>French</option>
+                    </select>
+
+                    <label class="block mb-2">Email</label>
+                    <input type="email" class="w-full p-2 border rounded mb-4" placeholder="Enter email">
+
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded">Save Changes</button>
+                </div>
+
+                <!-- Password Tab -->
+                <div id="password" class="tab-content p-4 hidden">
+                    <h3 class="text-lg font-semibold mb-4">Change Password</h3>
+                    <label class="block mb-2">New Password</label>
+                    <input type="password" class="w-full p-2 border rounded mb-4" placeholder="Enter new password">
+
+                    <label class="block mb-2">Confirm Password</label>
+                    <input type="password" class="w-full p-2 border rounded mb-4" placeholder="Re-enter new password">
+
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded">Update Password</button>
+                </div>
+
+                <!-- Admin Tab -->
+                <div id="admin" class="tab-content p-4 hidden">
+                    <h3 class="text-lg font-semibold mb-4">Admin Settings</h3>
+                    <p class="text-gray-600">Admin-specific settings will go here.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab-link');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    tabs.forEach(t => t.classList.remove('border-blue-500'));
+                    contents.forEach(c => c.classList.add('hidden'));
+
+                    this.classList.add('border-blue-500');
+                    document.getElementById(this.getAttribute('data-tab')).classList.remove('hidden');
+                });
+            });
+
+            // Activate the first tab by default
+            tabs[0].classList.add('border-blue-500');
+            contents[0].classList.remove('hidden');
+        });
+    </script>
+
+</body>
+</html>
