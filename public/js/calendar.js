@@ -79,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
         eventModal.classList.add('hidden'); 
         modalOverlay.classList.add('hidden');
         calendarEl.classList.remove('opacity-30', 'pointer-events-none');
+        closeModal.click();
 
         // Clear input fields after closing
         speakerInput.value = "";
@@ -92,17 +93,21 @@ document.addEventListener('DOMContentLoaded', function () {
     function convertToUTC(estDateString) {
         if (!estDateString) return "";
         
-        const estDate = new Date(estDateString);
-        const utcDate = new Date(estDate.toLocaleString("en-US", { timeZone: "America/New_York" }));
-
-        return utcDate.toISOString(); // Convert to standard ISO UTC format
+        // Create a date object from the input string
+        const localDate = new Date(estDateString);
+        
+        // Convert to UTC while preserving the local time
+        return localDate.toISOString();
     }
 
     // ✅ Convert UTC back to EST for display
     function convertToEST(utcDate) {
         if (!utcDate) return "";
         
-        const estDate = new Date(utcDate.toLocaleString("en-US", { timeZone: "America/New_York" }));
-        return estDate.toISOString().slice(0, 16); // Format as YYYY-MM-DDTHH:MM for input fields
+        // Create a date object from the UTC date
+        const date = new Date(utcDate);
+        
+        // Format as YYYY-MM-DDTHH:MM for input fields
+        return date.toISOString().slice(0, 16);
     }
 });

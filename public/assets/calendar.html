@@ -90,31 +90,31 @@
     >
       <div class="bg-white p-6 rounded-lg shadow-lg w-96 relative">
         <h3 class="text-lg font-semibold mb-4">Add New Event</h3>
-        <label class="block mb-2">Speaker Name:</label>
+        <label for="speakerInput" class="block mb-2">Speaker Name:</label>
         <input
           type="text"
           id="speakerInput"
           class="w-full p-2 border rounded mb-4"
         />
-        <label class="block mb-2">Talk Name:</label>
+        <label for="talkInput" class="block mb-2">Talk Name:</label>
         <input
           type="text"
           id="talkInput"
           class="w-full p-2 border rounded mb-4"
         />
-        <label class="block mb-2">Date & Time:</label>
+        <label for="dateTimeInput" class="block mb-2">Date & Time:</label>
         <input
           type="datetime-local"
           id="dateTimeInput"
           class="w-full p-2 border rounded mb-4"
         />
-        <label class="block mb-2">Opening Song:</label>
+        <label for="songInput" class="block mb-2">Opening Song:</label>
         <input
           type="text"
           id="songInput"
           class="w-full p-2 border rounded mb-4"
         />
-        <label class="block mb-2">Congregation Name:</label>
+        <label for="congregationInput" class="block mb-2">Congregation Name:</label>
         <input
           type="text"
           id="congregationInput"
@@ -143,6 +143,8 @@
         .getElementById("closeModal")
         .addEventListener("click", function () {
           document.getElementById("eventModal").classList.add("hidden");
+          document.getElementById("modalOverlay").classList.add("hidden");
+          document.getElementById("calendar").classList.remove("opacity-30", "pointer-events-none");
         });
       document
         .getElementById("submitEvent")

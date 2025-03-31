@@ -36,6 +36,20 @@ document.addEventListener('DOMContentLoaded', function () {
     loadTalks(); // Load talks on page load
 });
 
+// Function to format date for display
+function formatDateForDisplay(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', {
+        timeZone: 'America/New_York',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    });
+}
+
 // Function to fetch and display talks
 function loadTalks() {
     fetch('http://localhost:3000/get-events')
@@ -51,7 +65,7 @@ function loadTalks() {
             talks.forEach((talk, index) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td class="border p-2" id="date-${index}">${talk["Talk Date"]}</td>
+                    <td class="border p-2" id="date-${index}">${formatDateForDisplay(talk["Talk Date"])}</td>
                     <td class="border p-2" id="speaker-${index}">${talk["Speaker Name"]}</td>
                     <td class="border p-2" id="congregation-${index}">${talk["Congregation"]}</td>
                     <td class="border p-2" id="title-${index}">${talk["Talk Title"]}</td>

@@ -28,22 +28,22 @@
 
             <!-- Contact Form -->
             <div class="bg-white p-6 rounded-lg shadow-md">
-                <label class="block mb-2">Select Speaker:</label>
+                <label for="speakerSelect" class="block mb-2">Select Speaker:</label>
                 <select id="speakerSelect" class="w-full p-2 border rounded mb-4">
                     <option value="">Loading speakers...</option>
                 </select>
 
-                <label class="block mb-2">Contact Method:</label>
+                <label for="contactMethod" class="block mb-2">Contact Method:</label>
                 <div class="mb-4">
-                    <label class="inline-flex items-center">
-                        <input type="radio" name="contactMethod" value="email" class="mr-2" checked> Email
+                    <label for="emailMethod" class="inline-flex items-center">
+                        <input type="radio" id="emailMethod" name="contactMethod" value="email" class="mr-2" checked> Email
                     </label>
-                    <label class="inline-flex items-center ml-4">
-                        <input type="radio" name="contactMethod" value="sms" class="mr-2"> SMS
+                    <label for="smsMethod" class="inline-flex items-center ml-4">
+                        <input type="radio" id="smsMethod" name="contactMethod" value="sms" class="mr-2"> SMS
                     </label>
                 </div>
 
-                <label class="block mb-2">Message:</label>
+                <label for="messageInput" class="block mb-2">Message:</label>
                 <textarea id="messageInput" class="w-full p-2 border rounded mb-4" placeholder="Enter your message..."></textarea>
 
                 <div class="flex justify-between">
